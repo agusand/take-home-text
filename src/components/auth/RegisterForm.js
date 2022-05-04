@@ -60,32 +60,23 @@ export default function RegisterForm() {
 
 			const utilData = {
 				name: formData.get("name"),
-				address: formData.get("address"),
-				age: formData.get("age"),
-				phone: formData.get("phone"),
 				username: formData.get("email"),
 				password: formData.get("password"),
 				image: formData.get("image"),
 			};
 
-			const uploadResponse = await axios.post("/api/users/upload", formData, {
-				headers: {
-					contentType: "multipart/form-data",
-				},
-			});
 
-			if (uploadResponse.status === 200) {
-				const signUpResponse = await axios.post("/api/auth/signup", utilData);
-				if (signUpResponse.data.signupOk) {
-					setIsLoading(false);
-					setIsSuccess(true);
-					setTimeout(async () => {
-						navigate("/");
-						setPage("");
-						setIsSuccess(false);
-					}, 2000);
-					return true;
-				}
+			const signUpResponse = await axios.post("/api/auth/signup", utilData);
+
+			if (signUpResponse.data.signupOk) {
+				setIsLoading(false);
+				setIsSuccess(true);
+				setTimeout(async () => {
+					navigate("/");
+					setPage("");
+					setIsSuccess(false);
+				}, 2000);
+				return true;
 			}
 
 			setIsLoading(false);
