@@ -23,15 +23,15 @@ export default function Auth() {
     };
 
     return (
-        <div>
-            <section>
+        <div className="auth">
+            <section className="auth__section">
                 {!isError && !isSuccess ? (
-                    <article className="mainWrapper">
+                    <article className="auth__mainWrapper">
                         {page === "login" || page === "" ? (
-                            <h2 onClick={loginTitleClickHandle}>Sign in</h2>
+                            <h2 className="auth__title" onClick={loginTitleClickHandle}>Sign in</h2>
                         ) : null}
                         {page === "signup" || page === "" ? (
-                            <h2 onClick={signUpTitleClickHandle}>Sign up</h2>
+                            <h2 className="auth__title" onClick={signUpTitleClickHandle}>Sign up</h2>
                         ) : null}
                         {page === "login" ? (
                             <LoginForm />
@@ -42,7 +42,7 @@ export default function Auth() {
                     </article>
                 ) : null}
                 {isError || isSuccess ? (
-                    <article className="messageWrapper">
+                    <article className="auth__messageWrapper">
                         <AuthMessage
                             data={{
                                 successfullyLoggedIn: "Successfully logged in",
