@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 
+import router from "./src/routers/index.js";
 import passport from "./src/utils/localStrategy.js";
 import { logConsole, logError } from "./src/utils/logger.js";
 import connect from "./dbConnect.js";
@@ -53,7 +54,12 @@ app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 
+// Router
+app.use("/api", router);
+
 //Public
+app.use("/", express.static(resolve(__dirname, "./build")));
+app.use("/assets", express.static(resolve(__dirname, "./src/data")));
 app.use("/*", express.static(resolve(__dirname, "./build")));
 
 const server = app.listen(PORT, () =>
