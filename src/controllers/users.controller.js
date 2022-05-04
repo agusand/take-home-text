@@ -67,11 +67,3 @@ export const getUserLogged = async (req, res) => {
 		res.status(404).send({ error: error.message });
 	}
 };
-export const uploadUserAvatar = async (req, res) => {
-	try {
-		res.status(200).send({ result: "ok" });
-	} catch (error) {
-		logError.error(error.message);
-		res.status(404).send({ error: error.message });
-	}
-};
