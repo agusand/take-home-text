@@ -22,14 +22,14 @@
         "passport-local": "^1.0.0",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
-        "react-scripts": "5.0.1",
-        "web-vitals": "^2.1.4"
+        "react-scripts": "5.0.1"
     },
     "scripts": {
         "start": "node --experimental-modules app.js",
         "start:watch": "nodemon --experimental-modules app.js",
         "dev": "react-scripts start",
-        "build": "react-scripts build"
+        "build": "yarn build-css && react-scripts build",
+        "build-css": "node-sass --include-path sass src/styles/index.sass src/styles/index.css"
     },
     "eslintConfig": {
         "extends": [
@@ -53,6 +53,8 @@
         ]
     },
     "devDependencies": {
-        "nodemon": "^2.0.16"
+        "node-sass": "^7.0.1",
+        "nodemon": "^2.0.16",
+        "sass": "^1.51.0"
     }
 }
