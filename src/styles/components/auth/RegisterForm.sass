@@ -1,0 +1,45 @@
+.registerForm
+    width: 85%
+
+    &__fieldset
+        border: none
+        width: 100%
+        max-width: 100%
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        gap: 1.5rem
+
+    &__input
+        border: solid 2px black
+        max-width: 100%
+        padding: 0.7em
+
+        &__::placeholder
+            color: #888888
+
+    &__button
+        background: black
+        color: white
+        border: solid 2px black
+        width: 100%
+        padding: 0.7em
+        grid-column: 1/3
+
+        &__:hover
+            background: white
+            color: black
+
+    &__label
+        cursor: pointer
+        border: solid 2px black
+        width: 100%
+        padding: 0.7em
+        font-size: 1rem
+        position: relative
+        color: #888888
+
+    &__inputContainer
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: center

@@ -72,15 +72,16 @@ export default function LoginForm() {
 		}
 	};
 	return (
-		<form onSubmit={formSubmitHandle}>
-			<fieldset>
+		<form className="loginForm" onSubmit={formSubmitHandle}>
+			<fieldset className="loginForm__fieldset">
 				{inputs?.map((field) => {
 					return field.tipo_campo === "submit" ? (
-						<button key={field.nombre_campo} type="submit">
+						<button className="loginForm__button" key={field.nombre_campo} type="submit">
 							{field.place_holder}
 						</button>
 					) : (
 						<input
+							className="loginForm__input"
 							key={field.nombre_campo}
 							name={field.nombre_campo}
 							placeholder={field.place_holder}

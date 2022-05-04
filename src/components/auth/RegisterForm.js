@@ -18,46 +18,28 @@ export default function RegisterForm() {
 			orden: 1
 		},
 		{
-			nombre_campo: "address",
-			place_holder: "Dirección",
-			tipo_campo: "text",
-			orden: 2
-		},
-		{
-			nombre_campo: "age",
-			place_holder: "Edad",
-			tipo_campo: "text",
-			orden: 3
-		},
-		{
-			nombre_campo: "phone",
-			place_holder: "Teléfono",
-			tipo_campo: "text",
-			orden: 4
-		},
-		{
 			nombre_campo: "email",
 			place_holder: "E-mail",
 			tipo_campo: "email",
-			orden: 5
+			orden: 2
 		},
 		{
 			nombre_campo: "password",
 			place_holder: "Contraseña",
 			tipo_campo: "password",
-			orden: 6
+			orden: 3
 		},
 		{
 			nombre_campo: "image",
 			place_holder: "URL de imagen",
-			tipo_campo: "file",
-			orden: 7
+			tipo_campo: "text",
+			orden: 4
 		},
 		{
 			nombre_campo: "submit",
 			place_holder: "Enviar",
 			tipo_campo: "submit",
-			orden: 8
+			orden: 5
 		}
 	]
 
@@ -121,16 +103,16 @@ export default function RegisterForm() {
 		}
 	};
 	return (
-		<form onSubmit={formSubmitHandle}>
-			<fieldset>
+		<form className="registerForm" onSubmit={formSubmitHandle}>
+			<fieldset className="registerForm__fieldset">
 				{inputs?.map((field) => {
 					return field.tipo_campo === "submit" ? (
-						<button key={field.nombre_campo} type="submit">
+						<button className="registerForm__button" key={field.nombre_campo} type="submit">
 							{field.place_holder}
 						</button>
 					) : (
-						<div key={field.nombre_campo}>
-							<input
+						<div className="registerForm__inputContainer" key={field.nombre_campo}>
+							<input className="registerForm__input"
 								name={field.nombre_campo}
 								placeholder={field.place_holder}
 								type={field.tipo_campo}
@@ -142,7 +124,7 @@ export default function RegisterForm() {
 								required
 							/>
 							{field.tipo_campo === "file" ? (
-								<label htmlFor={field.nombre_campo}>
+								<label className="registerForm__label" htmlFor={field.nombre_campo}>
 									{imageInput || "Imágen"}
 								</label>
 							) : null}
