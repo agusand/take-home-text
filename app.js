@@ -8,11 +8,13 @@ import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 
 import { logConsole, logError } from "./src/utils/logger.js";
+import connect from "./dbConnect.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 dotenv.config();
+connect();
 
 // Settings
 
