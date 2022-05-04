@@ -2,19 +2,29 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { useLoadingContext } from "../../contexts/LoadingContext.js";
+import { useCommitPageContext } from "../../contexts/CommitPageContext.js";
 
 import CommitItem from "./CommitItem.js";
+import PageManager from "./PageManager.js";
 
 export default function CommitList() {
     const { setIsLoading } = useLoadingContext();
+    const { commitPage, setIsLastPage } = useCommitPageContext();
+
     const [commits, setCommits] = useState([]);
 
     useEffect(() => {
         const getCommits = async () => {
             try {
                 setIsLoading(true);
-                const { data } = await axios.get("https://api.github.com/repos/agusand/take-home-text/commits?per_page=100");
-                console.log(data.length);
+                const { data } = await axios.get(`https://api.github.com/repos/agusand/take-home-text/commits?per_page=30&page=${commitPage}`);
+                const { data: dataNextPage } = await axios.get(`https://api.github.com/repos/agusand/take-home-text/commits?per_page=30&page=${commitPage + 1}`);
+
+                if (dataNextPage?.length) {
+                    setIsLastPage(false);
+                } else {
+                    setIsLastPage(true);
+                }
 
                 setCommits(data);
                 setIsLoading(false);
@@ -25,7 +35,7 @@ export default function CommitList() {
         }
 
         getCommits();
-    }, [setIsLoading]);
+    }, [commitPage, setIsLastPage, setIsLoading]);
 
 
     return (
@@ -59,6 +69,7 @@ export default function CommitList() {
                     })}
                 </tbody>
             </table>
+            <PageManager />
         </div>
     )
 }

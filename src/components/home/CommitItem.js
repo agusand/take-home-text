@@ -13,7 +13,7 @@ export default function CommitItem({ commit: { commit } }) {
             </td>
             <td className='commitItem__tableCell'>
                 <span className='commitItem__tableCellText'>
-                    {commit.author.date}
+                    {commit.author.date.slice(0, 10)}
                 </span>
             </td>
         </tr>

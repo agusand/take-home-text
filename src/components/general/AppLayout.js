@@ -5,6 +5,8 @@ import Header from "./Header.js";
 import Main from "./Main.js";
 import Loading from "./Loading.js";
 
+import { CommitPageContextProvider } from "../../contexts/CommitPageContext.js";
+
 function AppLayout({ children }) {
 	const { isLoading } = useLoadingContext();
 
@@ -12,7 +14,9 @@ function AppLayout({ children }) {
 		<>
 			<Header />
 			<AuthContextProvider>
-				<Main>{children}</Main>
+				<CommitPageContextProvider>
+					<Main>{children}</Main>
+				</CommitPageContextProvider>
 			</AuthContextProvider>
 
 			{isLoading ? <Loading /> : null}
