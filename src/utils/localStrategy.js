@@ -89,10 +89,9 @@ passport.use("login", loginStrategy);
 passport.use("signup", signUpStrategy);
 
 passport.serializeUser((user, done) => {
-	done(null, user._id);
+	done(null, user);
 });
-passport.deserializeUser(async (id, done) => {
-	const user = await usersService.getUserByProperty("id", id);
+passport.deserializeUser(async (user, done) => {
 	done(null, user);
 });
 
