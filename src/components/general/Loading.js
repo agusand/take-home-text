@@ -1,8 +1,8 @@
 export default function Loading() {
 	return (
-		<div>
-			<figure>
-				<img alt="cargando" src="/assets/icons/spinner.svg" />
+		<div className="loading">
+			<figure className="loading__figure">
+				<img className="loading__image" alt="cargando" src="/assets/icons/spinner.svg" />
 			</figure>
 		</div>
 	);

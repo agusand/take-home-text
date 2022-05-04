@@ -1,9 +1,9 @@
 const Header = () => {
 	return (
-		<header>
-			<h1>
-				<span>Proyecto</span>
-				<span>Final</span>
+		<header className="header">
+			<h1 className="header__title">
+				<span className="header__line">Take-Home</span>
+				<span className="header__line">Test</span>
 			</h1>
 		</header>
 	);
