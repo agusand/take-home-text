@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import Home from "./pages/Home.js";
+import Auth from "./pages/Auth.js";
 
 import AppLayout from "./components/general/AppLayout.js";
 
@@ -14,7 +15,7 @@ export default function App() {
         <div className="app">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </div>
       </AppLayout>

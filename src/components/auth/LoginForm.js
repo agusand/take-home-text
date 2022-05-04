@@ -4,11 +4,32 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext.js";
 import { useLoadingContext } from "../../contexts/LoadingContext.js";
 
-export default function LoginForm({ data }) {
+export default function LoginForm() {
 	const { setIsError, setIsSuccess, setPage } = useAuthContext();
 	const { setIsLoading } = useLoadingContext();
 
-	data.sort((a, b) => a.orden - b.orden);
+	const inputs = [
+		{
+			nombre_campo: "email",
+			place_holder: "E-mail",
+			tipo_campo: "email",
+			orden: 1
+		},
+		{
+			nombre_campo: "password",
+			place_holder: "Password",
+			tipo_campo: "password",
+			orden: 2
+		},
+		{
+			nombre_campo: "submit",
+			place_holder: "Enviar",
+			tipo_campo: "submit",
+			orden: 3
+		}
+	]
+
+	inputs.sort((a, b) => a.orden - b.orden);
 
 	const navigate = useNavigate();
 
@@ -53,7 +74,7 @@ export default function LoginForm({ data }) {
 	return (
 		<form onSubmit={formSubmitHandle}>
 			<fieldset>
-				{data?.map((field) => {
+				{inputs?.map((field) => {
 					return field.tipo_campo === "submit" ? (
 						<button key={field.nombre_campo} type="submit">
 							{field.place_holder}
