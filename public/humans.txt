@@ -1,0 +1,9 @@
+/* SITE INFORMATION */
+
+	Site name:  	Take-Home test
+	Site URL:   	http://localhost:5000
+	Web develop:	Agustín Andreacchi
+	Contact:    	https://dhaweb.com/contact/
+	Location:   	Argentina
+	Built with: 	ReactJS + NodeJS
+	Launched:   	2021
