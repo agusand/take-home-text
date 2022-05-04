@@ -6,6 +6,8 @@ import cors from "cors";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 
 import passport from "./src/utils/localStrategy.js";
 import { logConsole, logError } from "./src/utils/logger.js";
@@ -18,9 +20,31 @@ dotenv.config();
 connect();
 
 // Settings
-
 const PORT = process.env.PORT || 5000
 const HOST = process.env.HOST || "http://localhost"
+
+
+// Session
+app.use(
+    session({
+        secret: process.env.SECRET,
+        cookie: {
+            httpOnly: false,
+            secure: false,
+            maxAge: Number(process.env.EXPIRATION_TIME_SECONDS) * 1000 || 600000,
+        },
+        rolling: true,
+        resave: true,
+        saveUninitialized: false,
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGO_DB_URL,
+            mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+        }),
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middlewares
 app.use(json());
