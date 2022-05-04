@@ -46,7 +46,7 @@ const signUpStrategy = new LocalStrategy(
 	async (req, username, password, done) => {
 		try {
 			const {
-				body: { name, isAdmin, address, age, phone, image: imageURL },
+				body: { name, isAdmin, image: imageURL },
 				session: { filePath },
 			} = req;
 			const user = await usersService.getUserByProperty(
@@ -64,9 +64,6 @@ const signUpStrategy = new LocalStrategy(
 				password,
 				name,
 				isAdmin,
-				address,
-				age,
-				phone,
 				image: filePath || imageURL,
 			};
 
