@@ -61,13 +61,13 @@ export default function UserCard() {
 		}
 	};
 	return (
-		<section>
-			<figure>
-				<img alt="user avatar" src={userLogged?.image} />
+		<section className="userCard">
+			<figure className="userCard__figure">
+				<img className="userCard__image" alt="user avatar" src={userLogged?.image} />
 			</figure>
-			<p>{`Welcome ${userLogged?.name}!`}</p>
+			<p className="userCard__welcome">{`Welcome ${userLogged?.name}!`}</p>
 
-			<button onClick={logoutClickHandle}>Disconnect</button>
+			<button className="userCard__disconnectButton" onClick={logoutClickHandle}>Disconnect</button>
 		</section>
 	);
 };
