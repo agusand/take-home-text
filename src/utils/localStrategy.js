@@ -5,7 +5,6 @@ import emoji from "node-emoji";
 import dotenv from "dotenv";
 
 import usersService from "../services/users.service.js";
-import mailService from "../services/mail.service.js";
 
 import { logConsole, logWarn, logError } from "./logger.js";
 
@@ -74,23 +73,11 @@ const signUpStrategy = new LocalStrategy(
 			const id = await usersService.createUser(newUser);
 
 			if (id) {
-				const infoToSend = {
-					to: process.env.ADMIN_EMAIL,
-					subject: "Nuevo registro",
-					html: `${Object.keys(newUser)
-						.map((key) => `<p><b>${key}</b>: ${newUser[key]}</p>`)
-						.join("\n")}`,
-				};
-
-				const info = await mailService.sendEmail(infoToSend);
-				if (info) {
-					logConsole.info(
-						emoji.get("heavy_check_mark"),
-						` E-mail sended with success: ${info}`
-					);
-				} else {
-					logWarn.warn("There was an error, the e-mail couldn't be sended.");
-				}
+				logConsole.info(
+					emoji.get("heavy_check_mark"),
+					`User created with id ${id}`
+				);
+				return done(null, newUser);
 			}
 
 			return done(null, id);

@@ -7,6 +7,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 
+import passport from "./src/utils/localStrategy.js";
 import { logConsole, logError } from "./src/utils/logger.js";
 import connect from "./dbConnect.js";
 
